@@ -136,7 +136,7 @@ async function status() {
 }
 
 try {
-  if (cmd === 'export') await doExport(arg || 'oracle')
+  if (cmd === 'export') await doExport(arg || 'example')
   else if (cmd === 'import') await doImport(arg)
   else if (cmd === 'status') await status()
   else { console.error('usage: sync.mjs export <tenant> | import <dir> | status'); process.exit(1) }

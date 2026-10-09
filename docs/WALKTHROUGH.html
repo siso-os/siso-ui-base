@@ -48,7 +48,7 @@
 
 <h2>Run it (60 seconds)</h2>
 <pre>cd ~/SISO_Workspace/siso-ui-base
-UIBASE_TENANT=tenants/oracle node app/serve.mjs
+UIBASE_TENANT=tenants/example node app/serve.mjs
 # → open http://127.0.0.1:8810/</pre>
 <div class="note">Zero dependencies — it's one Node built-in server + one HTML file (React via CDN). No <code>npm i</code>, no Vite, no build. Editing <code>app/index.html</code> updates the live page on refresh.</div>
 
@@ -57,7 +57,7 @@ UIBASE_TENANT=tenants/oracle node app/serve.mjs
 <div class="step"><div class="n">1</div><div>
   <h3>Forge — the agent makes variations</h3>
   <p>You say "build me 4 variations of the goal bar." The agent writes 4 standalone <code>.html</code> files into the tenant folder, following the design DNA:</p>
-  <pre>tenants/oracle/variations/goal-bar/
+  <pre>tenants/example/variations/goal-bar/
   meta.json              { "name":"Goal Bar", "prompt":"...", "slotId":"goalbar" }
   v1-thermometer.html    ← each one self-contained, renders alone
   v2-warm-gradient.html
@@ -76,7 +76,7 @@ node pipeline/judge.mjs ...    # Codex-vision scores vs rubric.mjs (built from d
 
 <div class="step"><div class="n">3</div><div>
   <h3>React — you give feedback in plain words</h3>
-  <p>Type in the feedback bar: <i>"2nd one but warmer, kill the milestone dots."</i> Or click into one for the full-screen deep-look (live interactive render + score breakdown + agent notes), or compare two side-by-side with score deltas. Your words land in <code>tenants/oracle/feedback-latest.json</code> — the agent reads it.</p>
+  <p>Type in the feedback bar: <i>"2nd one but warmer, kill the milestone dots."</i> Or click into one for the full-screen deep-look (live interactive render + score breakdown + agent notes), or compare two side-by-side with score deltas. Your words land in <code>tenants/example/feedback-latest.json</code> — the agent reads it.</p>
 </div></div>
 
 <div class="step"><div class="n d">4</div><div>
@@ -86,7 +86,7 @@ node pipeline/judge.mjs ...    # Codex-vision scores vs rubric.mjs (built from d
 
 <div class="step"><div class="n g">5</div><div>
   <h3>Graduate — the winner becomes real React</h3>
-  <p>You bless one. That writes <code>tenants/oracle/winner.json</code>. The blessed HTML is now the <b>source of truth</b>: the agent ports it to a React component pixel-for-pixel, then screenshot-diffs the React render against the HTML to verify they match. Command: <code>/graduate</code>.</p>
+  <p>You bless one. That writes <code>tenants/example/winner.json</code>. The blessed HTML is now the <b>source of truth</b>: the agent ports it to a React component pixel-for-pixel, then screenshot-diffs the React render against the HTML to verify they match. Command: <code>/graduate</code>.</p>
 </div></div>
 
 <h2>Proven, not promised</h2>

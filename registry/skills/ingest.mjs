@@ -16,7 +16,7 @@
 //
 // So this ingests them as REFERENCE STARTING POINTS, never as finished taste.
 // Each lands with `quality: "template-generated"` so nothing downstream mistakes
-// one for a hand-tuned DNA like tenants/oracle.
+// one for a hand-tuned DNA like tenants/example.
 //
 //   node registry/skills/ingest.mjs            # all 67 + previews
 //   node registry/skills/ingest.mjs --no-images

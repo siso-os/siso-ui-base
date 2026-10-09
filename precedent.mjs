@@ -4,7 +4,7 @@
 // THE GAP THIS CLOSES
 // The hub already RECORDS taste: every variation gets a 0-10 score, a worst
 // axis, and a written critique saying why it lost; the human blesses a winner.
-// tenants/oracle holds four scored variations, a blessed winner, and a critique
+// tenants/example holds four scored variations, a blessed winner, and a critique
 // explaining exactly which DNA rules the losers broke.
 //
 // Nothing read any of it. /forge-variations, brief.mjs and dna-grep all made

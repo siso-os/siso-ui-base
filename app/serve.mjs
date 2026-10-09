@@ -4,7 +4,7 @@
 // accepts reviews/bless writes. No DB, no build step, no framework. Run: node app/serve.mjs
 //
 // Env:
-//   UIBASE_TENANT   path to tenant dir (default: ../tenants/oracle)
+//   UIBASE_TENANT   path to tenant dir (default: ../tenants/example)
 //   UIBASE_PORT     default 8810
 //   UIBASE_VARS     variations dir (default: <tenant>/variations)
 import { createServer } from 'node:http'
@@ -14,7 +14,7 @@ import { join, resolve, dirname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
-const TENANT = resolve(process.env.UIBASE_TENANT || join(HERE, '..', 'tenants', 'oracle'))
+const TENANT = resolve(process.env.UIBASE_TENANT || join(HERE, '..', 'tenants', 'example'))
 const VARS = resolve(process.env.UIBASE_VARS || join(TENANT, 'variations'))
 const STATE = join(TENANT, 'review-state.json') // reviews + blessings live here
 const PORT = Number(process.env.UIBASE_PORT || 8810)

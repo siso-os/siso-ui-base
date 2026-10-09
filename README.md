@@ -55,19 +55,19 @@ this instead of learning four separate tools.
 
 ```bash
 # 1. run the UI Box (zero deps — Node built-ins only)
-UIBASE_TENANT=tenants/oracle node app/serve.mjs
+UIBASE_TENANT=tenants/example node app/serve.mjs
 # → http://127.0.0.1:8810/
 
 # 2. an agent forges variations into the tenant folder:
-#    tenants/oracle/variations/<set>/v1-name.html  (self-contained HTML)
+#    tenants/example/variations/<set>/v1-name.html  (self-contained HTML)
 #    the grid auto-refreshes as files land.
 
 # 3. score them so the grid ranks before you look:
 node pipeline/shoot.mjs && node pipeline/judge.mjs v1-name v2-name ...
 
 # 4. you react in the UI Box ("2nd one but warmer, kill the pill") or bless one.
-#    feedback → tenants/oracle/feedback-latest.json   (agent reads → iterates)
-#    bless    → tenants/oracle/winner.json            (agent reads → graduates)
+#    feedback → tenants/example/feedback-latest.json   (agent reads → iterates)
+#    bless    → tenants/example/winner.json            (agent reads → graduates)
 ```
 
 ## The loop
@@ -90,7 +90,7 @@ you: "build me 4 variations of the goal bar"
 | `app/index.html` | The viewer — React-via-CDN, scaled-iframe grid / deep-look / compare / bless, safe srcdoc render |
 | `pipeline/` | The **visual judge** — Playwright shoots → Codex-vision scores vs `rubric.mjs` (built from the DNA). Proven: Oracle chat-rail anchor = 9.24 |
 | `batteries/gates/dna-grep.mjs` | Deterministic source-rule gate (Stage 1) |
-| `tenants/oracle/` | Tenant zero: `dna.md` (the design rules) + `variations/` + generated state |
+| `tenants/example/` | Tenant zero: `dna.md` (the design rules) + `variations/` + generated state |
 | `commands/` | Sub-command playbooks: forge-variations · show-me · score-panel · iterate · graduate · calibrate · add-library |
 | `registry/repos.json` | 33-repo prior-art catalog (6 families) · `./clone.sh` to vendor for study |
 | `CANONICAL.html` | **The full spec** — what it is, the home, harvest manifest, viewer architecture |
