@@ -26,3 +26,6 @@ tenants/*/variations/
 tenants/*/review-state.json
 registry/skills/catalog/
 registry/principles/catalog/
+# Project tenants are private: only the example ships (Shaan, 9 Oct 2026: client names are fine in public, client code is not)
+tenants/*
+!tenants/example/

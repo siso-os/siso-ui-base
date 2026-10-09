@@ -30,7 +30,7 @@ const ROOT = join(HERE, '..', '..')
 
 const argv = process.argv.slice(2)
 const JSON_OUT = argv.includes('--json')
-const TENANT = argv.includes('--tenant') ? argv[argv.indexOf('--tenant') + 1] : 'oracle'
+const TENANT = argv.includes('--tenant') ? argv[argv.indexOf('--tenant') + 1] : 'example'
 const files = argv.filter((a, i) => !a.startsWith('--') && argv[i - 1] !== '--tenant')
 
 if (!files.length) {
