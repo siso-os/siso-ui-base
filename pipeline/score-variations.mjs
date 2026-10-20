@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, basename } from 'node:path'
 // Use oracle-streaming's playwright (it has the browsers installed)
-const pwModule = await import('/Users/shaansisodia/SISO_Workspace/SISO_Agency/apps/oracle-streaming/node_modules/playwright/index.mjs')
+const pwModule = await import('/Users/shaansisodia/SISO_Workspace/SISO_Agency/partners/halo/oracle/core/node_modules/playwright/index.mjs')
 const chromium = pwModule.chromium || pwModule.default?.chromium
 import { buildJudgePrompt, weightedOverall } from './rubric.mjs'
 
@@ -18,8 +18,8 @@ const VERDICTS_DIR = join(here, '_verdicts', 'variations')
 mkdirSync(SHOTS_DIR, { recursive: true })
 mkdirSync(VERDICTS_DIR, { recursive: true })
 
-const VARIATIONS_ROOT = '/Users/shaansisodia/SISO_Workspace/SISO_Agency/apps/oracle-streaming/.uihub/ui-base-tenant/variations'
-const REVIEW_STATE_PATH = '/Users/shaansisodia/SISO_Workspace/SISO_Agency/apps/oracle-streaming/.uihub/ui-base-tenant/review-state.json'
+const VARIATIONS_ROOT = '/Users/shaansisodia/SISO_Workspace/SISO_Agency/partners/halo/oracle/core/.uihub/ui-base-tenant/variations'
+const REVIEW_STATE_PATH = '/Users/shaansisodia/SISO_Workspace/SISO_Agency/partners/halo/oracle/core/.uihub/ui-base-tenant/review-state.json'
 
 const SETS = ['goalbar', 'upnext', 'focus', 'chat-composer', 'recap', 'video-fit']
 

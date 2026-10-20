@@ -1,0 +1,18 @@
+# Narrow allowlists for reviewed false positives (estate-backup-and-secrets, 17 Oct 2026).
+[extend]
+useDefault = true
+
+# UI catalogue data: category-name -> lane maps and library keys, not credentials.
+[[allowlists]]
+description = "UI catalogue ids flagged as generic API keys"
+targetRules = ["generic-api-key"]
+paths = ['''^registry/curated/scout/lane-of\.json$''', '''^registry/curated/libraries\.jsonl$''']
+
+# Third-party 21st.dev demo component: placeholder keys shown in an API-settings UI.
+[[allowlists]]
+description = "demo placeholder keys in a harvested component"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''^registry/21st-source-harvest/source/preetsuthar17__api-settings/code\.tsx$''']
+regexTarget = "secret"
+regexes = ['''(?i)(1234|abcd|xxxx)''']

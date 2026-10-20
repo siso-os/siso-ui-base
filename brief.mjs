@@ -70,6 +70,14 @@ if (hasDna) {
   }
 }
 
+// ---- 1b. CURATED BANK: Shaan's hand-picked comps + scout candidates, in his words.
+// Outranks the corpus search below: if the bank has a match, an agent should start there.
+let bank = null
+{
+  const raw = await tryRun('registry/curated/query.mjs', [query, '--preset', TENANT === 'oracle' ? 'operator' : 'all', '--limit', String(LIMIT), '--json'])
+  if (raw) { try { bank = JSON.parse(raw) } catch {} }
+}
+
 // ---- 2. COMPONENTS: real reference, ranked.
 // Try the whole phrase first, then fall back to single words. A brief is
 // written the way a person speaks ("glassmorphism dashboard"), and the corpus
@@ -161,6 +169,7 @@ const brief = {
   tenant: TENANT,
   authority: hasDna ? dnaPath : 'NO DNA — pick a palette direction first, then write one',
   dna,
+  bank: bank ? { curated: bank.curated, scout: bank.scout, rules: bank.rules, counts: bank.counts } : null,
   components: components.slice(0, LIMIT),
   componentQuery,
   precedent,
@@ -169,6 +178,7 @@ const brief = {
   workflow: [
     hasDna ? `1. Read ${dnaPath} — it is the authority; every value below defers to it.`
            : `1. No tenant DNA. Choose a palette direction below, then author tenants/${TENANT}/dna.md.`,
+    ...(bank && (bank.counts.curated || bank.counts.scout) ? ['1b. START FROM THE BANK below — Shaan picked those and his quote is the acceptance criterion. Corpus components are the fallback.'] : []),
     '2. OPEN THE PREVIEW IMAGES of the candidate components. Do not choose from descriptions.',
     '3. Read the bundle of the one you pick — it is compiled but complete.',
     '4. Rebuild it against the DNA. Adapt, never paste.',
@@ -184,6 +194,12 @@ const line = '─'.repeat(72)
 console.log(`\n${line}\nBRIEF: ${query}    tenant: ${TENANT}\n${line}`)
 console.log(`\nAUTHORITY  ${brief.authority}`)
 if (dna) console.log(`           ${dna.rules} rules, ${Math.round(dna.bytes / 1024)}KB`)
+
+if (bank && (bank.counts.curated || bank.counts.scout)) {
+  console.log(`\nBANK — Shaan's curated picks (${bank.counts.curated}) + scout candidates (${bank.counts.scout}); his words are the spec`)
+  for (const c of bank.curated) console.log(`  ${c.winner_of_type ? '★' : c.vote === 'keep' ? '✓' : ' '} ${c.signal.padEnd(5)} ${c.author}/${c.slug}  [${c.type}]\n        "${c.shaan_said}"\n        ${c.preview}${c.source ? `\n        ${c.source}` : ''}`)
+  for (const c of bank.scout) console.log(`    ${c.bank_score}/25 ${c.author}/${c.slug}  [${c.type}]${c.ab_against ? ` vs ${c.ab_against}` : ''}\n        ${c.why}\n        ${c.preview}`)
+}
 
 console.log(`\nCOMPONENTS (${components.length})${componentQuery && componentQuery !== query ? ` — matched on "${componentQuery}"` : ''} — open the previews, do not pick from text`)
 for (const c of brief.components) {

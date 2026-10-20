@@ -128,7 +128,7 @@ function meta(html, url) {
 // 640px through Cloudflare's transform path — measured 3.3x smaller.
 const small = u => `https://cdn.21st.dev/cdn-cgi/image/fit=scale-down,width=640,quality=75,format=auto/${u}`
 
-async function harvestOne(url) {
+export async function harvestOne(url) {
   const [, , , rawAuthor, , slug] = url.split('/')
   const id = `${rawAuthor.replace('@', '')}__${slug}`
   const dir = join(OUT, id)

@@ -15,6 +15,7 @@ The human stays on **taste**; the agent does **production**. HTML is the agent's
 Five layers, each answering a different question, joined by the loop:
 
 ```
+  registry/curated    WHAT SHAAN LIKES 112 picks in his words + 300 rated candidates (skill: ui-bank)
   registry/21st       WHAT EXISTS      7,949 components + previews
   registry/principles WHY IT WORKS     334 sections — universal rules
   registry/skills     WHERE TO START   49 palettes (only when there is no DNA)
@@ -122,7 +123,7 @@ The individual tools below still exist for when you need one directly, but
 
 ## Tenant config (what a project supplies to adopt)
 
-A tenant dir holds: `dna.md` (the design rules / rubric source), `variations/` (where agents write), and is the home for the generated `review-state.json` / `winner.json` / `feedback-latest.json`. Oracle Streaming = the worked example tenant (`tenants/example/`). To adopt in a new project: point `UIBASE_TENANT` at that project's tenant dir (e.g. `<project>/.uihub`), drop in a `dna.md`, go.
+A tenant dir holds: `dna.md` (the design rules / rubric source), `variations/` (where agents write), and is the home for the generated `review-state.json` / `winner.json` / `feedback-latest.json`. Oracle Streaming = the worked example tenant (`tenants/oracle/`). To adopt in a new project: point `UIBASE_TENANT` at that project's tenant dir (e.g. `<project>/.uihub`), drop in a `dna.md`, go.
 
 ## The component corpus (use it before forging from scratch)
 
